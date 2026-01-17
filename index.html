@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Final HTML Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final HTML Generator</title>
 
-  <style>
-    body{
-      font-family:Arial,Helvetica,sans-serif;
-      background:#f1f5f9;
-      margin:0;
-      padding:24px
-    }
-    .box{
-      max-width:960px;
-      margin:auto;
-      background:#fff;
-      border-radius:16px;
-      padding:24px;
-      box-shadow:0 10px 30px rgba(0,0,0,.1)
-    }
-    h1{margin-top:0}
-    label{
-      font-weight:700;
-      display:block;
-      margin-top:14px
-    }
-    input,textarea{
-      width:100%;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid #cbd5e1;
-      font-size:14px
-    }
-    textarea{
-      height:260px;
-      font-family:monospace
-    }
-    button{
-      margin-top:18px;
-      padding:14px 18px;
-      border:0;
-      border-radius:10px;
-      background:#2563eb;
-      color:#fff;
-      font-weight:800;
-      cursor:pointer
-    }
-    button.secondary{
-      background:#16a34a;
-      margin-left:8px
-    }
-    iframe{
-      width:100%;
-      height:520px;
-      border:1px solid #cbd5e1;
-      border-radius:12px;
-      margin-top:12px
-    }
-    .hint{
-      font-size:12px;
-      color:#64748b;
-      margin-top:6px
-    }
-  </style>
+<style>
+/* ===== GENERATOR UI ===== */
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f1f5f9;
+  margin:0;
+  padding:24px;
+}
+.box{
+  max-width:1000px;
+  margin:auto;
+  background:#fff;
+  border-radius:18px;
+  padding:26px;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+h1{margin-top:0}
+label{
+  font-weight:700;
+  display:block;
+  margin-top:14px;
+}
+input,textarea{
+  width:100%;
+  padding:11px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  font-size:14px;
+}
+textarea{
+  height:260px;
+  font-family:monospace;
+}
+button{
+  margin-top:18px;
+  padding:14px 20px;
+  border:0;
+  border-radius:12px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+button.secondary{
+  background:#16a34a;
+  margin-left:8px;
+}
+iframe{
+  width:100%;
+  height:560px;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  margin-top:14px;
+}
+.hint{
+  font-size:12px;
+  color:#64748b;
+  margin-top:6px;
+}
+</style>
 </head>
 <body>
 
@@ -121,31 +122,89 @@ function generate(){
 
 <title>${t}｜公式PDFダウンロード</title>
 <meta name="description" content="${d}">
-<meta name="robots" content="index, follow">
 <meta name="author" content="${a}">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="${t}｜公式PDFダウンロード">
-<meta property="og:description" content="${d}">
-<meta property="og:image" content="${i}">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${t}｜公式PDFダウンロード">
-<meta name="twitter:description" content="${d}">
-<meta name="twitter:image" content="${i}">
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eef2ff,#f8fafc);color:#1f2937}
-.wrap{max-width:760px;margin:auto;padding:24px 16px}
-.hero{background:#fff;border-radius:18px;padding:32px 24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.15)}
-.badge{display:inline-block;background:#22c55e;color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;margin-bottom:14px}
-img{max-width:190px;border-radius:12px;margin:0 auto 18px;display:block}
-h1{font-size:1.8rem;color:#1e3a8a}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#4f46e5,#0ea5e9);
+  color:#1f2937;
+}
+.wrap{
+  max-width:760px;
+  margin:auto;
+  padding:32px 16px;
+}
+.hero{
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  padding:36px 26px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
+}
+.badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#fff;
+  padding:6px 16px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:800;
+  margin-bottom:16px;
+}
+img{
+  max-width:200px;
+  border-radius:14px;
+  margin:0 auto 22px;
+  display:block;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+h1{font-size:1.9rem;color:#1e3a8a;margin:.3em 0}
 h2{font-size:1rem;color:#475569;margin:0}
-.cta{display:block;margin-top:22px;padding:16px;border-radius:14px;background:#2563eb;color:#fff;font-weight:800;text-decoration:none}
-.feature{background:#fff;padding:18px;border-radius:14px;margin-top:14px}
-footer{text-align:center;font-size:.75rem;color:#64748b;margin-top:36px}
+.rating{
+  margin:18px 0;
+  font-size:1rem;
+}
+.stars{
+  font-size:1.4rem;
+  font-weight:900;
+  color:#facc15;
+  letter-spacing:2px;
+}
+p{color:#475569;font-size:.95rem}
+.cta{
+  display:inline-block;
+  margin-top:26px;
+  padding:18px 28px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 18px 40px rgba(37,99,235,.55);
+}
+.features{
+  display:grid;
+  gap:16px;
+  margin:36px 0;
+}
+.feature{
+  background:rgba(255,255,255,.95);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 12px 26px rgba(0,0,0,.15);
+  border-left:5px solid #2563eb;
+  font-weight:600;
+}
+footer{
+  text-align:center;
+  font-size:.75rem;
+  color:#e5e7eb;
+  margin-top:36px;
+}
 </style>
 </head>
 <body>
@@ -156,20 +215,28 @@ footer{text-align:center;font-size:.75rem;color:#64748b;margin-top:36px}
 <img src="${i}" alt="${t}">
 <h1>${t}</h1>
 <h2>著者：${a}</h2>
+
+<div class="rating">
+  <span class="stars">★★★★★</span><br>
+  高評価レビュー多数
+</div>
+
 <p>${d}</p>
 <a class="cta" href="#" onclick="openPdf()">PDFを読む</a>
 
-<div id="pdfModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999">
-  <div style="position:absolute;top:5%;left:5%;right:5%;bottom:5%;background:#fff;border-radius:12px">
-    <button onclick="closePdf()" style="position:absolute;top:10px;right:10px">閉じる</button>
+<div id="pdfModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999">
+  <div style="position:absolute;top:5%;left:5%;right:5%;bottom:5%;background:#fff;border-radius:14px;overflow:hidden">
+    <button onclick="closePdf()" style="position:absolute;top:10px;right:10px;padding:8px 12px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-weight:700">閉じる</button>
     <iframe src="${p}" style="width:100%;height:100%;border:0"></iframe>
   </div>
 </div>
 </section>
 
-<div class="feature">✔ 著者公式の正規PDF</div>
-<div class="feature">✔ すぐにダウンロード可能</div>
-<div class="feature">✔ すべてのデバイス対応</div>
+<section class="features">
+  <div class="feature">✔ 著者公式の正規PDF</div>
+  <div class="feature">✔ 即アクセス・即閲覧</div>
+  <div class="feature">✔ 全デバイス対応</div>
+</section>
 
 <footer>© 公式著者版・無断転載禁止</footer>
 </div>
