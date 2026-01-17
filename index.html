@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Final HTML Generator</title>
+<title>SEO HTML Generator Tool</title>
 
 <style>
 body{
@@ -15,20 +15,24 @@ body{
 .box{
   max-width:1000px;
   margin:auto;
-  background:#fff;
+  background:#ffffff;
   border-radius:18px;
   padding:26px;
   box-shadow:0 20px 40px rgba(0,0,0,.12);
 }
+h1{margin-top:0}
 label{font-weight:700;display:block;margin-top:14px}
 input,textarea{
   width:100%;
   padding:11px;
   border-radius:10px;
   border:1px solid #cbd5e1;
-  font-size:14px
+  font-size:14px;
 }
-textarea{height:260px;font-family:monospace}
+textarea{
+  height:260px;
+  font-family:monospace;
+}
 button{
   margin-top:18px;
   padding:14px 20px;
@@ -37,29 +41,42 @@ button{
   background:#2563eb;
   color:#fff;
   font-weight:900;
-  cursor:pointer
+  cursor:pointer;
 }
-button.secondary{background:#16a34a;margin-left:8px}
-iframe{width:100%;height:560px;border:1px solid #cbd5e1;border-radius:14px;margin-top:14px}
-.hint{font-size:12px;color:#64748b;margin-top:6px}
+button.secondary{
+  background:#16a34a;
+  margin-left:8px;
+}
+iframe{
+  width:100%;
+  height:560px;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  margin-top:14px;
+}
+.hint{
+  font-size:12px;
+  color:#64748b;
+  margin-top:6px;
+}
 </style>
 </head>
 <body>
 
 <div class="box">
-  <h1>Final HTML Generator</h1>
+  <h1>Final SEO HTML Generator</h1>
 
   <label>Title</label>
-  <input id="title">
+  <input id="title" placeholder="Book title">
 
   <label>Author</label>
-  <input id="author">
+  <input id="author" placeholder="Author name">
 
   <label>Image URL</label>
-  <input id="image">
+  <input id="image" placeholder="https://example.com/cover.jpg">
 
   <label>PDF URL</label>
-  <input id="pdf">
+  <input id="pdf" placeholder="https://example.com/book.pdf">
 
   <div class="hint">Live preview appears only when all fields are filled.</div>
 
@@ -90,14 +107,52 @@ function generate(){
     return;
   }
 
-  const d = `${a} 著『${t}』の公式PDF版を今すぐダウンロード。正規版・完全版を著者から直接入手できます。`;
+  const description = `${a} 著『${t}』の公式PDF版を今すぐダウンロード。正規版・完全版・高評価レビュー多数。`;
 
-  const html=`<!DOCTYPE html>
+  const html = `<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>${t}｜公式PDFダウンロード</title>
+
+<meta name="description" content="${description}">
+<meta name="robots" content="index,follow">
+<meta name="author" content="${a}">
+<link rel="canonical" href="./">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="${t}｜公式PDFダウンロード">
+<meta property="og:description" content="${description}">
+<meta property="og:image" content="${i}">
+<meta property="og:site_name" content="${t} 公式">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${t}｜公式PDFダウンロード">
+<meta name="twitter:description" content="${description}">
+<meta name="twitter:image" content="${i}">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "${t}",
+  "author": {
+    "@type": "Person",
+    "name": "${a}"
+  },
+  "image": "${i}",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "128"
+  }
+}
+</script>
 
 <style>
 *{box-sizing:border-box}
@@ -105,25 +160,40 @@ body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:linear-gradient(135deg,#4f46e5,#0ea5e9);
+  color:#1f2937;
 }
 .wrap{max-width:760px;margin:auto;padding:32px 16px}
 .hero{
-  background:#fff;
+  background:#ffffff;
   border-radius:22px;
   padding:36px 26px;
   text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.25)
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
 }
 .badge{
+  display:inline-block;
   background:linear-gradient(135deg,#22c55e,#16a34a);
   color:#fff;
   padding:6px 16px;
   border-radius:999px;
   font-size:.75rem;
-  font-weight:800
+  font-weight:800;
+  margin-bottom:16px;
 }
-img{max-width:200px;border-radius:14px;margin:22px auto;display:block}
-.stars{font-size:1.4rem;color:#facc15;font-weight:900}
+img{
+  max-width:200px;
+  border-radius:14px;
+  margin:22px auto;
+  display:block;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+h1{color:#1e3a8a}
+.stars{
+  font-size:1.4rem;
+  color:#facc15;
+  font-weight:900;
+  letter-spacing:2px;
+}
 .cta{
   display:inline-block;
   margin-top:26px;
@@ -132,7 +202,7 @@ img{max-width:200px;border-radius:14px;margin:22px auto;display:block}
   background:linear-gradient(135deg,#2563eb,#1e40af);
   color:#fff;
   font-weight:900;
-  text-decoration:none
+  text-decoration:none;
 }
 
 /* FULLSCREEN PDF */
@@ -160,6 +230,12 @@ img{max-width:200px;border-radius:14px;margin:22px auto;display:block}
   color:#fff;
   font-weight:800;
 }
+footer{
+  text-align:center;
+  color:#e5e7eb;
+  font-size:.75rem;
+  margin-top:36px;
+}
 </style>
 </head>
 
@@ -167,13 +243,15 @@ img{max-width:200px;border-radius:14px;margin:22px auto;display:block}
 <div class="wrap">
 <section class="hero">
   <span class="badge">公式著者版</span>
-  <img src="${i}">
+  <img src="${i}" alt="${t}">
   <h1>${t}</h1>
   <h2>著者：${a}</h2>
   <div class="stars">★★★★★</div>
-  <p>${d}</p>
+  <p>${description}</p>
   <a class="cta" href="#" onclick="openPdf()">PDFを読む</a>
 </section>
+
+<footer>© 公式著者版・無断転載禁止</footer>
 </div>
 
 <div id="pdfModal">
@@ -182,21 +260,16 @@ img{max-width:200px;border-radius:14px;margin:22px auto;display:block}
 </div>
 
 <script>
-function openPdf(){
-  document.getElementById('pdfModal').style.display='block';
-}
-function closePdf(){
-  document.getElementById('pdfModal').style.display='none';
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closePdf();
-});
+function openPdf(){document.getElementById('pdfModal').style.display='block'}
+function closePdf(){document.getElementById('pdfModal').style.display='none'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf()});
 <\/script>
+
 </body>
 </html>`;
 
-  output.value=html;
-  preview.srcdoc=html;
+  output.value = html;
+  preview.srcdoc = html;
 }
 
 function copyHtml(){
