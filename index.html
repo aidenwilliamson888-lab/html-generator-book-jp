@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Final HTML Generator</title>
+
+  <style>
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f1f5f9;
+      margin:0;
+      padding:24px
+    }
+    .box{
+      max-width:960px;
+      margin:auto;
+      background:#fff;
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.1)
+    }
+    h1{margin-top:0}
+    label{
+      font-weight:700;
+      display:block;
+      margin-top:14px
+    }
+    input,textarea{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #cbd5e1;
+      font-size:14px
+    }
+    textarea{
+      height:260px;
+      font-family:monospace
+    }
+    button{
+      margin-top:18px;
+      padding:14px 18px;
+      border:0;
+      border-radius:10px;
+      background:#2563eb;
+      color:#fff;
+      font-weight:800;
+      cursor:pointer
+    }
+    button.secondary{
+      background:#16a34a;
+      margin-left:8px
+    }
+    iframe{
+      width:100%;
+      height:520px;
+      border:1px solid #cbd5e1;
+      border-radius:12px;
+      margin-top:12px
+    }
+    .hint{
+      font-size:12px;
+      color:#64748b;
+      margin-top:6px
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Final HTML Generator</h1>
+
+  <label>Title</label>
+  <input id="title" placeholder="Book title">
+
+  <label>Author</label>
+  <input id="author" placeholder="Author name">
+
+  <label>Image URL</label>
+  <input id="image" placeholder="https://example.com/cover.jpg">
+
+  <label>PDF URL</label>
+  <input id="pdf" placeholder="https://example.com/file.pdf">
+
+  <div class="hint">Live preview appears only when all fields are filled.</div>
+
+  <button onclick="generate()">Generate HTML</button>
+  <button class="secondary" onclick="copyHtml()">Copy HTML</button>
+
+  <label>Generated HTML</label>
+  <textarea id="output"></textarea>
+
+  <label>Live Preview</label>
+  <iframe id="preview"></iframe>
+</div>
+
+<script>
+['title','author','image','pdf'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', generate);
+});
+
+function generate(){
+  const t = title.value.trim();
+  const a = author.value.trim();
+  const i = image.value.trim();
+  const p = pdf.value.trim();
+
+  if(!t || !a || !i || !p){
+    output.value = '';
+    preview.srcdoc = '';
+    return;
+  }
+
+  const d = `${a} 著『${t}』の公式PDF版を今すぐダウンロード。正規版・完全版を著者から直接入手できます。`;
+
+  const html = `<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>${t}｜公式PDFダウンロード</title>
+<meta name="description" content="${d}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="${a}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="${t}｜公式PDFダウンロード">
+<meta property="og:description" content="${d}">
+<meta property="og:image" content="${i}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${t}｜公式PDFダウンロード">
+<meta name="twitter:description" content="${d}">
+<meta name="twitter:image" content="${i}">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eef2ff,#f8fafc);color:#1f2937}
+.wrap{max-width:760px;margin:auto;padding:24px 16px}
+.hero{background:#fff;border-radius:18px;padding:32px 24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.15)}
+.badge{display:inline-block;background:#22c55e;color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;margin-bottom:14px}
+img{max-width:190px;border-radius:12px;margin:0 auto 18px;display:block}
+h1{font-size:1.8rem;color:#1e3a8a}
+h2{font-size:1rem;color:#475569;margin:0}
+.cta{display:block;margin-top:22px;padding:16px;border-radius:14px;background:#2563eb;color:#fff;font-weight:800;text-decoration:none}
+.feature{background:#fff;padding:18px;border-radius:14px;margin-top:14px}
+footer{text-align:center;font-size:.75rem;color:#64748b;margin-top:36px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<section class="hero">
+<span class="badge">公式著者版</span>
+<img src="${i}" alt="${t}">
+<h1>${t}</h1>
+<h2>著者：${a}</h2>
+<p>${d}</p>
+<a class="cta" href="#" onclick="openPdf()">PDFを読む</a>
+
+<div id="pdfModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999">
+  <div style="position:absolute;top:5%;left:5%;right:5%;bottom:5%;background:#fff;border-radius:12px">
+    <button onclick="closePdf()" style="position:absolute;top:10px;right:10px">閉じる</button>
+    <iframe src="${p}" style="width:100%;height:100%;border:0"></iframe>
+  </div>
+</div>
+</section>
+
+<div class="feature">✔ 著者公式の正規PDF</div>
+<div class="feature">✔ すぐにダウンロード可能</div>
+<div class="feature">✔ すべてのデバイス対応</div>
+
+<footer>© 公式著者版・無断転載禁止</footer>
+</div>
+
+<script>
+function openPdf(){document.getElementById('pdfModal').style.display='block'}
+function closePdf(){document.getElementById('pdfModal').style.display='none'}
+<\/script>
+</body>
+</html>`;
+
+  output.value = html;
+  preview.srcdoc = html;
+}
+
+function copyHtml(){
+  if(!output.value) return alert('Nothing to copy');
+  output.select();
+  document.execCommand('copy');
+  alert('HTML copied');
+}
+</script>
+
+</body>
+</html>
